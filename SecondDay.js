@@ -1,7 +1,8 @@
+let validAnswer = false;
+
 const userName = prompt("What's your name?");
 const userAge = prompt("How old are you?");
 const userLanguage = prompt("What programming language are you studying? (e.g., C++, JavaScript, etc.)");
-let validAnswer = false;
 
 alert(`Hello ${userName}, you're ${userAge} years old and you're learning ${userLanguage}. Programming is for everyone, regardless of age!`);
 
