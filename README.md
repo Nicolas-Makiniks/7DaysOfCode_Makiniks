@@ -1,12 +1,11 @@
 # 7DaysOfCode_Makiniks
 Participating in the #7DaysOfCode challenge, and here is where I going to share my results
-
 ## 📝 Daily Report - Day 1
 
 🗓 Date: 24/06/2025
 
 ⏳ Time spend: ~1h
-> Studied and practiced JavaScript comparison operators (```==``` vs ```===```).
+> 🎯 Goal: Studied and practiced JavaScript comparison operators (```==``` vs ```===```).
 
 💡 Concepts Learned:
 1. Loose equality ```==```: Java Script automatically converts types to compare only values.
@@ -23,13 +22,12 @@ if (numberOne == stringOne) {
 }
 ```
 > I found this much simpler than what I was used to do in C or C++
-
 ## 📝 Daily Report – Day 2
 
 🗓 Date: 25/06/2025
 
 ⏳ Time invested: ~1h
-> Explored how to collect and display information using prompt() and alert() in JavaScript.
+> 🎯 Goal: Explored how to collect and display information using prompt() and alert() in JavaScript.
 
 💡 Concepts Learned:
 1. ```prompt()``` and ```alert()``` functions: These are built-in JavaScript methods used to collect input and display messages directly through the browser’s UI.
@@ -42,13 +40,12 @@ const userName = prompt("What's your name?");
 alert(`Nice to meet you, ${userName}!`);
 ```
 > This simple interaction showed me how the browser pauses everything until the user interacts with the prompt or alert, demonstrating how synchronous JavaScript behaves in the browser.
-
 ## 📝 Daily Report – Day 3
 
 🗓 Date: 26/06/2025
 
 ⏳ Time invested: ~1h
-> Practicing while loops, conditional logic, and collecting multiple user inputs.
+> 🎯 Goal: Practicing while loops, conditional logic, and collecting multiple user inputs.
 
 💡 Concepts learned/reviewed:
 
@@ -75,7 +72,7 @@ while (!validTech) {
 🗓 Date: 27/06/2025
 
 ⏳ Time invested: ~2h
-> Creating a number guessing game.
+> 🎯 Goal: Creating a number guessing game.
 
 💡 Concepts learned and applied:
 
@@ -90,7 +87,7 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 - Empty strings;
 - Not yet implemented: user cancellation;
 - Simplifying blank input validation:
-> I discovered that applying ```.trim()``` directly at assignment ```prompt().trim()``` eliminates the need for separate empty ```string``` checks. However, I also realized this makes it impossible to check for ```null``` (when the user cancels), since ```.trim()``` would throw an error in that case — which is something I want to fix later.
+> I discovered that applying ```.trim()``` directly at assignment ```prompt().trim()``` eliminates the need for separate empty string checks. However, I also realized this makes it impossible to check for ```null``` (when the user cancels), since ```.trim()``` would throw an error in that case — which is something I want to fix later.
 
 🧪 Code highlight of the day:
 ```
@@ -107,3 +104,35 @@ if (isNaN(userChosenNumber)) {
 }
 ```
 > This snippet reflects my effort to ensure valid and safe user input, making sure the game won’t break regardless of what’s typed.
+## 📝 Daily Report – Day 5 of the Challenge
+
+📅 Date: June 27, 2025
+
+⏳ Time invested: 1h30
+
+> 🎯 Goal: Building a categorized shopping list system using switch-case and abstract input handling.
+
+💡 What I learned and practiced:
+
+1. State-driven logic with switch-case I used a switch-case structure based on a ```currentState``` variable to manage the flow of the script, making it more organized and readable.
+2. Abstracted input validation: I created a reusable function ```treatUserResponse()``` to validate and clean all user inputs, removing extra spaces and checking for empty entries. This reduced code repetition and centralized the logic.
+3. Category arrays inside an object: I used a simple object groceries to store categorized arrays. This method is lightweight and perfect for this kind of structured data.
+4. Consistent logging for debugging: I added several ```console.log()``` statements to trace what's happening behind the scenes, even if the user only interacts with ```alert()``` boxes.
+
+🧪 Code Highlight:
+```
+function tratamentoDeRespostas(respostaDoUsuario) {
+    if (!respostaDoUsuario || respostaDoUsuario.trim() === '') {
+        console.log('User did not enter a value');
+        return;
+    } else {
+        console.log('Trimming whitespace from user input');
+        return respostaDoUsuario.trim();
+    }
+}
+```
+> This function became key to handling all kinds of user input and ensures the program flows without interruptions.
+
+Even though the task was simple, it helped me focus on clean structure, user interaction, and solid control flow. I learned a lot by turning a basic prompt system into a well-organized experience.
+
+I practiced state-based flow with switch-case, abstract input processing, and structured data using categorized arrays. The project was simple, but very clean and functional!
