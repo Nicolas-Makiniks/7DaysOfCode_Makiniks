@@ -1,130 +1,130 @@
 /*
-Criar um sistema que ordene e categorize uma lista de compras do usuário
+Create a system to sort and categorize a user's shopping list
 */
-const alimentos = {
-    frutas: [],
-    laticinios: [],
-    congelados: [],
-    doces: []
+const groceries = {
+    fruits: [],
+    dairy: [],
+    frozen: [],
+    sweets: []
 }
 
-let estadoAtual = 'inicio';
+let currentState = 'start';
 
-let alimentoDoUsuario;
-let retornoResposta;
+let userItem;
+let validatedResponse;
 
-console.log('Início do script');
-while(estadoAtual !== 'fim') {
-    switch (estadoAtual) {
-        case 'inicio':
-            console.log('Primeira interação do usuário.');
+console.log('Script started');
+while (currentState !== 'end') {
+    switch (currentState) {
+        case 'start':
+            console.log('First user interaction.');
 
-            alert('Bem vindo ao seu organizador de compras de mercado pessoal!');
-            alert('Aqui você irá listar tudo o que deseja comprar e iremos organizar automaticamente!');
-            estadoAtual = 'coletaAlimento';
+            alert('Welcome to your personal grocery list organizer!');
+            alert('Here you can list everything you want to buy and we’ll automatically organize it for you!');
+            currentState = 'collectItem';
             break;
-        
-        case 'coletaAlimento':
-            console.log('Realizando coleta de produtos do usuário.');
 
-            alimentoDoUsuario = prompt('Qual alimento deseja adicionar?');
-            retornoResposta = tratamentoDeRespostas(alimentoDoUsuario);
+        case 'collectItem':
+            console.log('Collecting item from user.');
 
-            if (!retornoResposta) {
-                console.log('Usuário inseriu valor inválido');
-                alert('Insira um valor válido.');
-                break; //Força a repetir o laço/pergunta
+            userItem = prompt('What item would you like to add?');
+            validatedResponse = validateUserInput(userItem);
+
+            if (!validatedResponse) {
+                console.log('User entered invalid value');
+                alert('Please enter a valid item.');
+                break; // Forces the loop to repeat
             }
 
-            console.log(`Valor inserido válido: ${alimentoDoUsuario}`);
-            estadoAtual = 'coletaCategoria';
+            console.log(`Valid input received: ${userItem}`);
+            currentState = 'collectCategory';
             break;
-        
-        case 'coletaCategoria':
-            console.log('Definição da categoria do alimento.');
-            const categoriaDoUsuario = prompt('Qual a categoria deste alimento? 1- frutas, 2- laticínios, 3- congelados, 4- doces');
-            retornoResposta = tratamentoDeRespostas(categoriaDoUsuario);
-            
-            switch (retornoResposta) {
-                case '1': // FRUTAS
-                    console.log('Categoria definida como Frutas');
-                    alimentos.frutas.push(alimentoDoUsuario.trim());
-                    console.log(`Adicionado a categoria Frutas: ${alimentos.frutas}`);
-                    estadoAtual = 'verificarSeAdicionaMais';
+
+        case 'collectCategory':
+            console.log('Defining category for the item.');
+            const userCategory = prompt('What category does this item belong to? 1- Fruits, 2- Dairy, 3- Frozen, 4- Sweets');
+            validatedResponse = validateUserInput(userCategory);
+
+            switch (validatedResponse) {
+                case '1': // FRUITS
+                    console.log('Category set as Fruits');
+                    groceries.fruits.push(userItem.trim());
+                    console.log(`Added to Fruits: ${groceries.fruits}`);
+                    currentState = 'askToAddMore';
                     break;
 
-                case '2': // LATICÍNIOS
-                    console.log('Categoria definida como Frutas');
-                    alimentos.laticinios.push(alimentoDoUsuario.trim());
-                    console.log(`Adicionado a categoria Laticínios: ${alimentos.laticinios}`);
-                    estadoAtual = 'verificarSeAdicionaMais';
+                case '2': // DAIRY
+                    console.log('Category set as Dairy');
+                    groceries.dairy.push(userItem.trim());
+                    console.log(`Added to Dairy: ${groceries.dairy}`);
+                    currentState = 'askToAddMore';
                     break;
 
-                case '3': // CONGELADOS
-                    console.log('Categoria definida como Frutas');
-                    alimentos.congelados.push(alimentoDoUsuario.trim());
-                    console.log(`Adicionado a categoria Congelados: ${alimentos.congelados}`);
-                    estadoAtual = 'verificarSeAdicionaMais';
+                case '3': // FROZEN
+                    console.log('Category set as Frozen');
+                    groceries.frozen.push(userItem.trim());
+                    console.log(`Added to Frozen: ${groceries.frozen}`);
+                    currentState = 'askToAddMore';
                     break;
 
-                case '4': // DOCES
-                    console.log('Categoria definida como Frutas');
-                    alimentos.doces.push(alimentoDoUsuario.trim());
-                    console.log(`Adicionado a categoria Doces: ${alimentos.doces}`);
-                    estadoAtual = 'verificarSeAdicionaMais';
+                case '4': // SWEETS
+                    console.log('Category set as Sweets');
+                    groceries.sweets.push(userItem.trim());
+                    console.log(`Added to Sweets: ${groceries.sweets}`);
+                    currentState = 'askToAddMore';
                     break;
-                
+
                 default:
-                    alert('Digite apenas um número!');
+                    alert('Please enter a valid number!');
             }
             break;
-            
-        case 'verificarSeAdicionaMais':
-            console.log('Verificar se o usuário deseja encerrar.');
-            const respostaUsuario = prompt('Gostaria de adicionar mais itens a lista? 1- Sim, 2- Não');
-            retornoResposta = tratamentoDeRespostas(respostaUsuario);
 
-            switch (retornoResposta) {
+        case 'askToAddMore':
+            console.log('Checking if user wants to continue.');
+            const userResponse = prompt('Would you like to add more items? 1- Yes, 2- No');
+            validatedResponse = validateUserInput(userResponse);
+
+            switch (validatedResponse) {
                 case '1':
-                    console.log('Usuário deseja continuar');
-                    estadoAtual = 'coletaAlimento'
+                    console.log('User chose to continue');
+                    currentState = 'collectItem';
                     break;
 
                 case '2':
-                    console.log('Usuário deseja encerrar');
-                    estadoAtual = 'exibirListaFinal';
+                    console.log('User chose to finish');
+                    currentState = 'showFinalList';
                     break;
 
                 default:
-                    console.log('Resposta inválida');
-                    alert('Digite apenas um número!');
+                    console.log('Invalid response');
+                    alert('Please enter a valid number!');
             }
             break;
 
-        case 'exibirListaFinal':
-            console.log(`A lista final organizada é:
-                Frutas: ${alimentos.frutas}
-                Laticínios: ${alimentos.laticinios}
-                Congelados: ${alimentos.congelados}
-                Doces: ${alimentos.doces}`);
-            alert(`Sua lista final organizada é:
-                Frutas: ${alimentos.frutas}
-                Laticínios: ${alimentos.laticinios}
-                Congelados: ${alimentos.congelados}
-                Doces: ${alimentos.doces}`);
-            estadoAtual = 'fim';
+        case 'showFinalList':
+            console.log(`Final organized list:
+                Fruits: ${groceries.fruits}
+                Dairy: ${groceries.dairy}
+                Frozen: ${groceries.frozen}
+                Sweets: ${groceries.sweets}`);
+            alert(`Here’s your final organized list:
+                Fruits: ${groceries.fruits}
+                Dairy: ${groceries.dairy}
+                Frozen: ${groceries.frozen}
+                Sweets: ${groceries.sweets}`);
+            currentState = 'end';
             break;
     }
 }
-console.log('Fim do script.');
+console.log('Script ended.');
 
-// Abstração para tratamento de todas as respostas coletadas do usuário
-function tratamentoDeRespostas(respostaDoUsuario) {
-    if (!respostaDoUsuario || respostaDoUsuario.trim() === '') {
-        console.log('Usuário não inseriu um valor');
+// Abstraction for validating and cleaning user input
+function validateUserInput(userInput) {
+    if (!userInput || userInput.trim() === '') {
+        console.log('User did not enter a value');
         return;
     } else {
-        console.log('Removendo espaços em branco da resposta coletada do usuário');
-        return respostaDoUsuario.trim();
+        console.log('Trimming whitespace from user input');
+        return userInput.trim();
     }
 }
